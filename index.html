@@ -183,7 +183,125 @@
     </div>
 
   </main>
+<!doctype html>
+<html lang="ta">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Charity Homepage — CEO Logo (Glowing)</title>
+<style>
+  :root{
+    --bg1: #042927;
+    --bg2: #0f3f33;
+    --neon-green: 34, 255, 135; /* rgb components */
+    --neon-orange: 255, 170, 60;
+    --logo-size: 100px;
+  }
 
+  /* Page reset */
+  *{box-sizing:border-box;margin:0;padding:0;font-family:Inter, system-ui, Arial, sans-serif}
+  body{
+    min-height:100vh;
+    background: radial-gradient(1200px 600px at 10% 10%, rgba(34,255,135,0.06), transparent),
+                radial-gradient(900px 500px at 90% 40%, rgba(255,170,60,0.06), transparent),
+                linear-gradient(180deg, var(--bg1), var(--bg2));
+    color:#e6fff5;
+    display:flex;
+    align-items:flex-start;
+    justify-content:center;
+    padding:48px;
+  }
+
+  /* mock hero card */
+  .hero {
+    width: 820px;
+    max-width:calc(100vw - 64px);
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.04));
+    border-radius:28px;
+    padding:48px;
+    position:relative;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
+    backdrop-filter: blur(6px);
+    overflow:hidden;
+  }
+
+  /* Example basket illustration placeholder */
+  .basket {
+    width:160px;height:160px;border-radius:18px;
+    background: linear-gradient(180deg,#2b6b63,#0e4f4a);
+    margin:0 auto 18px auto;
+    filter: drop-shadow(0 8px 30px rgba(0,0,0,0.7));
+  }
+
+  h1{
+    text-align:center;
+    font-size:36px;
+    margin-bottom:20px;
+    text-shadow: 0 2px 18px rgba(0,0,0,0.6);
+    letter-spacing:0.2px;
+  }
+
+  /* TOP-RIGHT LOGO */
+  .logo-wrap{
+    position:absolute;
+    top:22px;
+    right:22px;
+    width:var(--logo-size);
+    height:var(--logo-size);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:12;
+    /* slightly glassy backing */
+    background: rgba(255,255,255,0.02);
+    border-radius:50%;
+    -webkit-backdrop-filter: blur(6px);
+            backdrop-filter: blur(6px);
+  }
+
+  .logo {
+    width: calc(var(--logo-size) - 12px);
+    height: calc(var(--logo-size) - 12px);
+    border-radius:50%;
+    object-fit:cover;
+    display:block;
+    position:relative;
+    z-index:2;
+    transform:translateZ(0);
+    /* subtle inner shading to blend */
+    box-shadow:
+      inset 0 2px 6px rgba(0,0,0,0.45),
+      0 6px 24px rgba(0,0,0,0.6);
+    border: 2px solid rgba(255,255,255,0.04);
+  }
+
+  /* Neon glow: multiple layered shadows for depth.
+     You can change glow color by toggling .glow-green / .glow-orange */
+  .logo-wrap.glow-green::before,
+  .logo-wrap.glow-orange::before{
+    content:"";
+    position:absolute;
+    left:50%; top:50%;
+    width: calc(var(--logo-size) * 1.6);
+    height: calc(var(--logo-size) * 1.6);
+    transform: translate(-50%,-50%);
+    border-radius:50%;
+    z-index:1;
+    filter: blur(26px);
+    opacity:0.95;
+    pointer-events:none;
+  }
+  .logo-wrap.glow-green::before{
+    background: radial-gradient(circle at 35% 30%,
+      rgba(var(--neon-green),0.28), rgba(var(--neon-green),0.18) 30%, rgba(34,255,135,0.04) 60%, transparent 70%);
+  }
+  .logo-wrap.glow-orange::before{
+/ Allow clicking the visible label to open file picker
+  document.querySelector('.file-label input')?.addEventListener('click', (e)=> e.stopPropagation());
+</script>
+
+</body>
+  </html>
 <script>
   const fileInput = document.getElementById('fileInput');
   const ceoImg = document.getElementById('ceoImg');
