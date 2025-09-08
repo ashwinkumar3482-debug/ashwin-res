@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="ta">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Charity Homepage — CEO Logo (Glowing)</title>
+<style>
+  :root{
+    --bg1: #042927;
+    --bg2: #0f3f33;
+    --neon-green: 34, 255, 135; /* rgb components */
+    --neon-orange: 255, 170, 60;
+    --logo-size: 100px;
+  }
+
+  /* Page reset */
+  *{box-sizing:border-box;margin:0;padding:0;font-family:Inter, system-ui, Arial, sans-serif}
+  body{
+    min-height:100vh;
+    background: radial-gradient(1200px 600px at 10% 10%, rgba(34,255,135,0.06), transparent),
+                radial-gradient(900px 500px at 90% 40%, rgba(255,170,60,0.06), transparent),
+                linear-gradient(180deg, var(--bg1), var(--bg2));
+    color:#e6fff5;
+    display:flex;
+    align-items:flex-start;
+    justify-content:center;
+    padding:48px;
+  }
+
+  /* mock hero card */
+  .hero {
+    width: 820px;
+    max-width:calc(100vw - 64px);
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.04));
+    border-radius:28px;
+    padding:48px;
+    position:relative;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
+    backdrop-filter: blur(6px);
+    overflow:hidden;
+  }
+
+  /* Example basket illustration placeholder */
+  .basket {
+    width:160px;height:160px;border-radius:18px;
+    background: linear-gradient(180deg,#2b6b63,#0e4f4a);
+    margin:0 auto 18px auto;
+    filter: drop-shadow(0 8px 30px rgba(0,0,0,0.7));
+  }
+
+  h1{
+    text-align:center;
+    font-size:36px;
+    margin-bottom:20px;
+    text-shadow: 0 2px 18px rgba(0,0,0,0.6);
+    letter-spacing:0.2px;
+  }
+
+  /* TOP-RIGHT LOGO */
+  .logo-wrap{
+    position:absolute;
+    top:22px;
+    right:22px;
+    width:var(--logo-size);
+    height:var(--logo-size);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:12;
+    /* slightly glassy backing */
+    background: rgba(255,255,255,0.02);
+    border-radius:50%;
+    -webkit-backdrop-filter: blur(6px);
+            backdrop-filter: blur(6px);
+  }
+
+  .logo {
+    width: calc(var(--logo-size) - 12px);
+    height: calc(var(--logo-size) - 12px);
+    border-radius:50%;
+    object-fit:cover;
+    display:block;
+    position:relative;
+    z-index:2;
+    transform:translateZ(0);
+    /* subtle inner shading to blend */
+    box-shadow:
+      inset 0 2px 6px rgba(0,0,0,0.45),
+      0 6px 24px rgba(0,0,0,0.6);
+    border: 2px solid rgba(255,255,255,0.04);
+  }
+
+  /* Neon glow: multiple layered shadows for depth.
+     You can change glow color by toggling .glow-green / .glow-orange */
+  .logo-wrap.glow-green::before,
+  .logo-wrap.glow-orange::before{
+    content:"";
+    position:absolute;
+    left:50%; top:50%;
+    width: calc(var(--logo-size) * 1.6);
+    height: calc(var(--logo-size) * 1.6);
+    transform: translate(-50%,-50%);
+    border-radius:50%;
+    z-index:1;
+    filter: blur(26px);
+    opacity:0.95;
+    pointer-events:none;
+  }
+  .logo-wrap.glow-green::before{
+    background: radial-gradient(circle at 35% 30%,
+      rgba(var(--neon-green),0.28), rgba(var(--neon-green),0.18) 30%, rgba(34,255,135,0.04) 60%, transparent 70%);
+  }
+  .logo-wrap.glow-orange::before{
+    background: radial-gradient(circle at 35% 30%,
+      rgba(var(--neon-orange),0.28), rgba(var(--neon-orange),0.18) 30%, rgba(255,170,60,0.04) 60%, transparent 70%);
+  }
+
+  /* thin bright ring */
+  .logo-wrap .ring{
+    position:absolute;
+    left:50%; top:50%;
+    transform:translate(-50%,-50%);
+    width: calc(var(--logo-size) - 2px);
+    height: calc(var(--logo-size) - 2px);
+    border-radius:50%;
+    z-index:3;
+    pointer-events:none;
+    box-shadow:
+      0 0 8px rgba(255,255,255,0.06),
+      0 0 22px rgba(255,255,255,0.02) inset;
+    mix-blend-mode: screen;
+  }
+
+  /* file input preview area (hidden by default but usable for testing) */
+  .controls{
+    margin-top:28px;
+    display:flex;
+    gap:12px;
+    justify-content:center;
+  }
+  .file-label{
+    background:rgba(255,255,255,0.03);
+    padding:10px 14px;border-radius:10px;
+    cursor:pointer;border:1px solid rgba(255,255,255,0.03);
+    font-size:13px;color:#dfffe9;
+  }
+
+  /* small responsive adjustments */
+  @media (max-width:520px){
+    :root{--logo-size:80px}
+    .hero{padding:28px}
+    h1{font-size:22px}
+  }
+
+</style>
+</head>
+<body>
+
+  <main class="hero" id="hero">
+    <!-- TOP RIGHT LOGO (default placeholder image) -->
+    <div class="logo-wrap glow-green" id="logoWrap" title="CEO & Founder">
+      <img alt="CEO Photo" id="ceoImg" class="logo" src="data:image/svg+xml;utf8,
+        <svg xmlns='http://www.w3.org/2000/svg' width='400' height='400'>
+          <rect rx='50' width='100%' height='100%' fill='%230b3f33'/>
+          <text x='50%' y='52%' dominant-baseline='middle' text-anchor='middle' fill='%23bfeed7' font-size='42' font-family='Arial'>CEO</text>
+        </svg>">
+      <div class="ring" aria-hidden="true"></div>
+    </div>
+
+    <!-- Center content (mock) -->
+    <div class="basket" aria-hidden="true"></div>
+    <h1>Share Food. Spread Smiles. Save Lives.</h1>
+
+    <!-- file input to test / replace logo -->
+    <div class="controls" style="margin-top:32px;">
+      <label class="file-label">
+        Upload CEO Photo
+        <input id="fileInput" type="file" accept="image/*" style="display:none" />
+      </label>
+
+      <button id="btnGreen" class="file-label">Green Glow</button>
+      <button id="btnOrange" class="file-label">Orange Glow</button>
+    </div>
+
+  </main>
+
+<script>
+  const fileInput = document.getElementById('fileInput');
+  const ceoImg = document.getElementById('ceoImg');
+  const logoWrap = document.getElementById('logoWrap');
+  const btnGreen = document.getElementById('btnGreen');
+  const btnOrange = document.getElementById('btnOrange');
+
+  // When user picks a file, read as data URL and set as src (preview)
+  fileInput.addEventListener('change', (e)=>{
+    const f = e.target.files && e.target.files[0];
+    if(!f) return;
+    if(!f.type.startsWith('image/')){ alert('Please select an image file.'); return; }
+    const reader = new FileReader();
+    reader.onload = (ev) => {
+      ceoImg.src = ev.target.result;
+      // optional: ensure smooth transition
+      ceoImg.style.opacity = 0;
+      setTimeout(()=> ceoImg.style.opacity = 1, 40);
+    };
+    reader.readAsDataURL(f);
+  });
+
+  // click handlers to toggle glow color classes
+  btnGreen.addEventListener('click', ()=> {
+    logoWrap.classList.remove('glow-orange');
+    logoWrap.classList.add('glow-green');
+  });
+  btnOrange.addEventListener('click', ()=> {
+    logoWrap.classList.remove('glow-green');
+    logoWrap.classList.add('glow-orange');
+  });
+
+  // Allow clicking the visible label to open file picker
+  document.querySelector('.file-label input')?.addEventListener('click', (e)=> e.stopPropagation());
+</script>
+
+</body>
+</html>
